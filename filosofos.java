@@ -4,7 +4,7 @@ import java.util.concurrent.Semaphore;
 public class filosofos  implements  Runnable{
 
     String name;
-    mesa sentamNaMesa;
+
     Semaphore garfoEsquerdo;
     Semaphore garfoDireito;
 
@@ -14,14 +14,6 @@ public class filosofos  implements  Runnable{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public mesa getSentamNaMesa() {
-        return sentamNaMesa;
-    }
-
-    public void setSentamNaMesa(mesa sentamNaMesa) {
-        this.sentamNaMesa = sentamNaMesa;
     }
 
     public Semaphore getGarfoEsquerdo() {
@@ -40,9 +32,8 @@ public class filosofos  implements  Runnable{
         this.garfoDireito = garfoDireito;
     }
 
-    public filosofos(String name, mesa sentamNaMesa, Semaphore garfoEsquerdo, Semaphore garfoDireito) {
+    public filosofos(String name, Semaphore garfoEsquerdo, Semaphore garfoDireito) {
         this.name = name;
-        this.sentamNaMesa = sentamNaMesa;
         this.garfoEsquerdo = garfoEsquerdo;
         this.garfoDireito = garfoDireito;
         new Thread(this).start();
@@ -79,7 +70,7 @@ public class filosofos  implements  Runnable{
     }
 
     private void pensando() throws InterruptedException {
-        var timerun =new Random().nextInt(10)+1;
+        var timerun = new Random().nextInt(10)+1;
         System.out.println("filoso "+name+" esta pensando,no tempo de:"+timerun+"s");
         Thread.sleep(timerun*1000);
     }

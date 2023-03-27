@@ -48,10 +48,11 @@
 cmake-build-*/
 
 # Mongo Explorer plugin
-.idea/**/mongoSettings.xml
+.idea/**
 
 # File-based project format
 *.iws
+jantar_dos_filosofos.iml
 
 # IntelliJ
 out/**
