@@ -4,9 +4,19 @@ import java.util.concurrent.Semaphore;
 public class filosofos  implements  Runnable{
 
     String name;
-
+    boolean breakPoint = true;
+    int comeu = 0;
     Semaphore garfoEsquerdo;
     Semaphore garfoDireito;
+
+
+    public int getComeu() {
+        return comeu;
+    }
+
+    public void setBreakPoint(boolean breakPoint) {
+        this.breakPoint = breakPoint;
+    }
 
     public String getName() {
         return name;
@@ -42,7 +52,7 @@ public class filosofos  implements  Runnable{
 
     @Override
     public void run() {
-        while(true){
+        while(breakPoint){
            var pegouE =  garfoEsquerdo.tryAcquire();
             if(pegouE){
                var pegouD = garfoDireito.tryAcquire();
@@ -76,6 +86,7 @@ public class filosofos  implements  Runnable{
     }
 
     private void comer() throws InterruptedException {
+        comeu++;
         var timerun = new Random().nextInt(10)+1;
         System.out.println("filoso "+name+" esta comendo,no tempo de:"+timerun+"s");
         Thread.sleep(timerun*1000);
